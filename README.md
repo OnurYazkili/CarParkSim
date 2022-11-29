@@ -13,3 +13,6 @@ Yön tuşları yada W,A,S,D tuşlarını kullanarak aracımızı otoparktaki uyg
 Ben projedeki menü ile alakalı kısımları kodladım 
 Deniz Erdem aracın park etmesi ile ilgili kısımları kodladı ve haritayı çizdi
 Buse Çınar aracın hareketi ile ilgili kısımları kodladı.
+
+Oyunu oynamak için
+https://simmer.io/@OnurYazkili/carparksim
