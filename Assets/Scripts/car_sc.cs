@@ -8,7 +8,7 @@ public class car_sc : MonoBehaviour
 {
     // Start is called before the first frame update
     Rigidbody2D rb;
-    public float steeringAmount,speed,direction,escapeInput;
+    public float strng,spd,drc,escapeInput;
     void Start()
     {
         transform.position = new Vector3(930,70,-2);
@@ -38,40 +38,49 @@ public class car_sc : MonoBehaviour
 
         if (Canvas.enabled == true)
         {
-            steeringAmount=Input.GetAxis("Horizontal");
-            speed=0f;
-            direction = Mathf.Sign(Vector2.Dot(rb.velocity,rb.GetRelativeVector(Vector2.up)));
-            rb.rotation -= steeringAmount * 0.01f * rb.velocity.magnitude * direction;
-            rb.AddRelativeForce(Vector2.up*speed);
-            rb.AddRelativeForce(-Vector2.right*rb.velocity.magnitude*steeringAmount/2);
+            strng=Input.GetAxis("Horizontal");
+            spd=0f;
+            var rbgrv=rb.GetRelativeVector(Vector2.up);
+            var v2d=Vector2.Dot(rb.velocity,rbgrv);
+            drc = Mathf.Sign(Vector2.Dot(rb.velocity,rb.GetRelativeVector(Vector2.up)));
+            rb.rotation -= strng * 0.01f * rb.velocity.magnitude * drc;
+            var forceUp = Vector2.up*spd;
+            rb.AddRelativeForce(forceUp);
+            var forceSt =-Vector2.right*rb.velocity.magnitude*strng/2;
+            rb.AddRelativeForce(forceSt);
         }
         else
         {
-            steeringAmount=Input.GetAxis("Horizontal");
-            speed=Input.GetAxis("Vertical")*1500f;
-            direction = Mathf.Sign(Vector2.Dot(rb.velocity,rb.GetRelativeVector(Vector2.up)));
-            rb.rotation -= steeringAmount * 0.01f * rb.velocity.magnitude * direction;
-            rb.AddRelativeForce(Vector2.up*speed);
-            rb.AddRelativeForce(-Vector2.right*rb.velocity.magnitude*steeringAmount/2);
+            strng=Input.GetAxis("Horizontal");
+            spd=Input.GetAxis("Vertical")*1500f;
+            var rbgrv=rb.GetRelativeVector(Vector2.up);
+            var v2d=Vector2.Dot(rb.velocity,rbgrv);
+            drc = Mathf.Sign(v2d);
+            rb.rotation -= strng * 0.01f * rb.velocity.magnitude * drc;
+            var forceUp = Vector2.up*spd;
+            rb.AddRelativeForce(forceUp);
+            var forceSt =-Vector2.right*rb.velocity.magnitude*strng/2;
+            rb.AddRelativeForce(forceSt);
         }
 
         if (EndGame.enabled == true)
         {
-            steeringAmount=Input.GetAxis("Horizontal");
-            speed=0f;
-            direction = Mathf.Sign(Vector2.Dot(rb.velocity,rb.GetRelativeVector(Vector2.up)));
-            rb.rotation -= steeringAmount * 0.01f * rb.velocity.magnitude * direction;
-            rb.AddRelativeForce(Vector2.up*speed);
-            rb.AddRelativeForce(-Vector2.right*rb.velocity.magnitude*steeringAmount/2);
+            strng=Input.GetAxis("Horizontal");
+            spd=0f;
+            var rbgrv=rb.GetRelativeVector(Vector2.up);
+            var v2d=Vector2.Dot(rb.velocity,rbgrv);
+            drc = Mathf.Sign(v2d);
+            rb.rotation -= strng * 0.01f * rb.velocity.magnitude * drc;
+            var forceUp = Vector2.up*spd;
+            rb.AddRelativeForce(forceUp);
+            var forceSt =-Vector2.right*rb.velocity.magnitude*strng/2;
+            rb.AddRelativeForce(forceSt);
         }
-        
 
         
     }
      public void restartgame()
     {
-        Canvas Canvas = GameObject.FindObjectOfType<Canvas>();
-        Canvas.enabled = false ;
         Canvas EndGame = GameObject.FindObjectOfType<Canvas>();
         EndGame.enabled = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -84,7 +93,7 @@ public class car_sc : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D crash)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void OnTriggerEnter2D(Collider2D parked)
